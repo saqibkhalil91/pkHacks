@@ -40,6 +40,9 @@
         android:layout_below="@+id/edtEventName"
         android:layout_marginTop="22dp"
         android:text="City" />
+     
+
+    
 
     <EditText
         android:id="@+id/edtCity"
@@ -50,16 +53,6 @@
         android:hint="City"
         android:ems="10" />
 
-    <Button
-        android:id="@+id/btnStartDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/edtCity"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Start Date" />
-
     <EditText
         android:id="@+id/edtStartDate"
         android:layout_width="wrap_content"
@@ -68,14 +61,21 @@
         android:layout_alignLeft="@+id/edtCity"
           android:hint="Start Date"
         android:ems="10" />
-
-    <Button
-        android:id="@+id/btnEndDate"
+      <DatePicker
+        android:id="@+id/dpStartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/btnStartDate"
-        android:layout_centerVertical="true"
-        android:text="End Date" />
+        android:visibility="invisible" />
+	<ImageView
+        android:id="@+id/btnStartDate"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/edtCity"
+        android:layout_marginTop="19dp"
+        android:src="@drawable/celender"
+        android:text="Start Date" />
+   
 
     <EditText
         android:id="@+id/edtEndDate"
@@ -94,5 +94,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="42dp"
         android:text="Create Event" />
+     <DatePicker
+        android:id="@+id/Result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
+ <ImageView
+        android:id="@+id/btnEndDate"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignRight="@+id/btnStartDate"
+        android:layout_centerVertical="true"
+         android:src="@drawable/celender"
+        android:text="End Date" />
+    
 
 </RelativeLayout>

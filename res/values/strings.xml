@@ -7,7 +7,7 @@
     <string name="title_activity_create_event">CreateEvent</string>
      <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
-    <string name="imgdesc">imgdesc</string>
+    <string name="imgdesc">Category</string>
 
     <string-array name="titles">
         <item>Home</item>
@@ -34,7 +34,7 @@
         <item >Startup Weekends</item>
         <item >Conferences</item>
         <item >Tech Talks / Sessions</item>
-        <item >Filter</item>
+     
     </string-array>
     
     <!-- Nav Drawer List Item Icons -->

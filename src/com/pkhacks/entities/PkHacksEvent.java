@@ -14,7 +14,7 @@ public class PkHacksEvent implements Serializable {
 	private String startDate;
 	private String endDate;
 	private String link;
-	private EventType eventType;
+	private int eventType;
 
 	public void createObjectFromParsePbj(ParseObject parseObject) {
 		eventName = parseObject.getString("event_name");
@@ -22,14 +22,14 @@ public class PkHacksEvent implements Serializable {
 		startDate = parseObject.getString("start_date");
 		endDate = parseObject.getString("end_date");
 		link = parseObject.getString("link");
-
+		eventType = parseObject.getInt("event_type_id");
 	}
 
-	public EventType getEventType() {
+	public int getEventType() {
 		return eventType;
 	}
 
-	public void setEventType(EventType eventType) {
+	public void setEventType(int eventType) {
 		this.eventType = eventType;
 	}
 

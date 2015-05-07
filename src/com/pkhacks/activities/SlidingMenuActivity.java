@@ -1,39 +1,47 @@
 package com.pkhacks.activities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.pkhacks.adopters.NavDrawerListAdapter;
 import com.pkhacks.entities.NavDrawerItem;
 import com.pkhacks.entities.PkHacksEvent;
-import com.pkhacks.fragments.CommunityFragment;
-import com.pkhacks.fragments.FindPeopleFragment;
+
 import com.pkhacks.fragments.HomeFragment;
-import com.pkhacks.fragments.MyListFragment;
-import com.pkhacks.fragments.PagesFragment;
-import com.pkhacks.fragments.PhotosFragment;
-import com.pkhacks.fragments.WhatsHotFragment;
+
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ActionBar.LayoutParams;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.Spinner;
 
 public class SlidingMenuActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	ArrayList<PkHacksEvent> eventList;
+	private Spinner citySpinner;
 
 	// nav drawer title
 	private CharSequence mDrawerTitle;
@@ -57,7 +65,7 @@ public class SlidingMenuActivity extends Activity {
 		eventList = new ArrayList<PkHacksEvent>();
 		eventList = (ArrayList<PkHacksEvent>) getIntent().getSerializableExtra(
 				"eventList");
-		Log.d("slidingevent naem", eventList.get(0).getEventName());
+		
 		mTitle = mDrawerTitle = getTitle();
 
 		// load slide menu items
@@ -84,14 +92,15 @@ public class SlidingMenuActivity extends Activity {
 				.getResourceId(2, -1)));
 		// Communities, Will add a counter here
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons
-				.getResourceId(3, -1), true, "22"));
+				.getResourceId(2, -1)));
 		// Pages
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons
 				.getResourceId(4, -1)));
 		// What's hot, We will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons
-				.getResourceId(5, -1), true, "50+"));
-
+		/*
+		 * navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons
+		 * .getResourceId(2, -1)));
+		 */
 		// Recycle the typed array
 		navMenuIcons.recycle();
 
@@ -146,6 +155,94 @@ public class SlidingMenuActivity extends Activity {
 		}
 	}
 
+	/*public void addItemsOnCitySpinner() {
+
+		List<String> list = new ArrayList<String>();
+		list.add("list 1");
+		list.add("list 2");
+		list.add("list 3");
+		//ArrayList<PkHacksEvent> data = fragment.filterList;
+		//
+		//	Log.d("slidingevent naem", data.get(0).getCity());
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(),
+					android.R.layout.simple_spinner_item, list);
+			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			citySpinner.setAdapter(dataAdapter);
+		//}
+	}*/
+
+	/*@SuppressLint("InflateParams")
+	private void filter() {
+		LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
+				.getSystemService(LAYOUT_INFLATER_SERVICE);
+		View filterView = layoutInflater.inflate(R.layout.custom_filteroptions,
+				null);
+		final PopupWindow popupWindow = new PopupWindow(filterView,
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		citySpinner = (Spinner) filterView.findViewById(R.id.Sppinerbraches);
+		citySpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		
+		addItemsOnCitySpinner();
+		
+		 * final Spinner
+		 * spiner_projects=(Spinner)popupView.findViewById(R.id.SppinerProjects
+		 * ); final Spinner
+		 * spiner_projects=(Spinner)popupView.findViewById(R.id.
+		 * SppinerProjects); //
+		 * popupWindow.showAtLocation(R.layout.custom_filteroptions,
+		 * Gravity.NO_GRAVITY,35 + 50,20 + 50); datepickerfeildTodate =
+		 * (EditText)popupView.findViewById(R.id.edtdateTo); final Spinner
+		 * spiner_brnacher=(Spinner)popupView.findViewById(R.id.Sppinerbraches);
+		 * final Spinner
+		 * spiner_projects=(Spinner)popupView.findViewById(R.id.SppinerProjects
+		 * ); datepickerfeildFrom =
+		 * (EditText)popupView.findViewById(R.id.edtDateFrom);
+		 
+		Button btnDismiss = (Button) filterView.findViewById(R.id.dismiss);
+		// datepickerfeildFrom.setText(fromDate);
+		btnDismiss.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				popupWindow.dismiss();
+			}
+		});
+
+		// datefrom.setOnClickListener(this);
+		
+		 * datepickerfeildFrom.setOnClickListener(new OnClickListener(){
+		 * 
+		 * @Override public void onClick(View v) { // TODO Auto-generated method
+		 * stub flag=true; mydatePicker(); //
+		 * datepickerfeildFrom.setText(fromDate); }});
+		 * 
+		 * 
+		 * datepickerfeildTodate.setOnClickListener(new OnClickListener(){
+		 * 
+		 * @Override public void onClick(View v) { // TODO Auto-generated method
+		 * stub flag =false; mydatePicker(); //
+		 * datepickerfeildFrom.setText(fromDate); }});
+		 
+		popupWindow.showAtLocation(btnDismiss, 100, 100, 100);
+
+	}*/
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.slidingmenu, menu);
@@ -156,14 +253,15 @@ public class SlidingMenuActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// toggle nav drawer on selecting action bar app icon/title
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
-			return true;
+			return false;
 		}
-		// Handle action bar actions click
+		// Handle action bar actions click bn
 		switch (item.getItemId()) {
 		case R.id.action_settings:
-			return true;
+			//filter();
+			return false;
 		default:
-			return super.onOptionsItemSelected(item);
+			return false;
 		}
 	}
 
@@ -177,13 +275,13 @@ public class SlidingMenuActivity extends Activity {
 		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
-
+	HomeFragment fragment = null;
 	/**
 	 * Diplaying fragment view for selected nav drawer list item
 	 * */
 	private void displayView(int position) {
 		// update the main content by replacing fragments
-		Fragment fragment = null;
+		
 		fragment = new HomeFragment(eventList, position);
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
