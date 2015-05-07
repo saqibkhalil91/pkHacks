@@ -60,41 +60,44 @@ public final class R {
         public static final int list_selector_flatcolor=0x7f020011;
     }
     public static final class id {
-        public static final int Result=0x7f0a000a;
-        public static final int Row_toggleimgView=0x7f0a0014;
-        public static final int Rowinformation_imgView=0x7f0a0016;
-        public static final int Sppinerbraches=0x7f0a000c;
-        public static final int action_settings=0x7f0a0022;
-        public static final int btnCreateEvent=0x7f0a0009;
+        public static final int Row_toggleimgView=0x7f0a0017;
+        public static final int Rowinformation_imgView=0x7f0a0019;
+        public static final int Sppinerbraches=0x7f0a000f;
+        public static final int action_settings=0x7f0a0025;
+        public static final int btnCreateEvent=0x7f0a000b;
         public static final int btnEndDate=0x7f0a0008;
-        public static final int btnStartDate=0x7f0a0005;
-        public static final int button2=0x7f0a000b;
-        public static final int counter=0x7f0a0012;
-        public static final int dismiss=0x7f0a000f;
+        public static final int btnStartDate=0x7f0a0009;
+        public static final int button2=0x7f0a000e;
+        public static final int counter=0x7f0a0015;
+        public static final int dismiss=0x7f0a0012;
         public static final int dpStartDate=0x7f0a0006;
-        public static final int drawer_layout=0x7f0a001f;
+        public static final int drawer_layout=0x7f0a0022;
         public static final int edtCity=0x7f0a0003;
-        public static final int edtDateFrom=0x7f0a000d;
+        public static final int edtDateFrom=0x7f0a0010;
         public static final int edtEndDate=0x7f0a0007;
         public static final int edtEventName=0x7f0a0001;
-        public static final int edtStartDate=0x7f0a0004;
-        public static final int edtdateTo=0x7f0a000e;
-        public static final int frame_container=0x7f0a0020;
-        public static final int icon=0x7f0a0010;
-        public static final int list=0x7f0a001e;
-        public static final int list_slidermenu=0x7f0a0021;
-        public static final int rel1=0x7f0a0013;
-        public static final int rel2=0x7f0a0017;
-        public static final int rel3=0x7f0a001a;
-        public static final int row_cityName=0x7f0a001b;
-        public static final int row_endTime=0x7f0a0018;
-        public static final int row_eventName=0x7f0a0015;
-        public static final int row_startTime=0x7f0a0019;
-        public static final int row_website=0x7f0a001c;
+        public static final int edtStartDate=0x7f0a0005;
+        public static final int edtUrl=0x7f0a0004;
+        public static final int edtdateTo=0x7f0a0011;
+        public static final int frame_container=0x7f0a0023;
+        public static final int icon=0x7f0a0013;
+        public static final int list=0x7f0a0021;
+        public static final int list_slidermenu=0x7f0a0024;
+        public static final int rel1=0x7f0a0016;
+        public static final int rel2=0x7f0a001a;
+        public static final int rel3=0x7f0a001d;
+        public static final int row_cityName=0x7f0a001e;
+        public static final int row_endTime=0x7f0a001b;
+        public static final int row_eventName=0x7f0a0018;
+        public static final int row_startTime=0x7f0a001c;
+        public static final int row_website=0x7f0a001f;
+        public static final int spinnerCategories=0x7f0a000d;
         public static final int textView1=0x7f0a0000;
         public static final int textView2=0x7f0a0002;
-        public static final int title=0x7f0a0011;
-        public static final int txtLabel=0x7f0a001d;
+        public static final int textView3=0x7f0a000c;
+        public static final int title=0x7f0a0014;
+        public static final int tvurl=0x7f0a000a;
+        public static final int txtLabel=0x7f0a0020;
     }
     public static final class layout {
         public static final int activity_create_event=0x7f030000;
@@ -152,9 +155,31 @@ public final class R {
         res/values-v11/styles.xml on API 14+ devices.
     
  API 14 theme customizations can go here. 
+
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
          */
         public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;

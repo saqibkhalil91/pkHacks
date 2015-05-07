@@ -2,11 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".CreateEvent" >
+
+     >
 
     <TextView
         android:id="@+id/textView1"
@@ -53,28 +50,20 @@
         android:hint="City"
         android:ems="10" />
 
-    <EditText
-        android:id="@+id/edtStartDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btnStartDate"
-        android:layout_alignLeft="@+id/edtCity"
-          android:hint="Start Date"
-        android:ems="10" />
+  <EditText
+      android:id="@+id/edtUrl"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignLeft="@+id/edtStartDate"
+      android:layout_below="@+id/edtCity"
+       android:layout_marginTop="10dp"
+      android:ems="10"
+      android:hint="Url" />
       <DatePicker
         android:id="@+id/dpStartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible" />
-	<ImageView
-        android:id="@+id/btnStartDate"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/edtCity"
-        android:layout_marginTop="19dp"
-        android:src="@drawable/celender"
-        android:text="Start Date" />
    
 
     <EditText
@@ -85,20 +74,7 @@
         android:layout_alignLeft="@+id/edtStartDate"
         android:ems="10"
         android:hint="End Date" />
-
-    <Button
-        android:id="@+id/btnCreateEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edtEndDate"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp"
-        android:text="Create Event" />
-     <DatePicker
-        android:id="@+id/Result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible" />
+   
  <ImageView
         android:id="@+id/btnEndDate"
         android:layout_width="50dp"
@@ -107,6 +83,61 @@
         android:layout_centerVertical="true"
          android:src="@drawable/celender"
         android:text="End Date" />
-    
+
+ <TextView
+     android:id="@+id/tvurl"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignBaseline="@+id/edtUrl"
+     android:layout_alignBottom="@+id/edtUrl"
+     android:layout_alignLeft="@+id/btnStartDate"
+     android:text="url" />
+
+ <ImageView
+     android:id="@+id/btnStartDate"
+     android:layout_width="50dp"
+     android:layout_height="50dp"
+     android:layout_alignLeft="@+id/textView2"
+     android:layout_below="@+id/edtUrl"
+     android:src="@drawable/celender"
+     android:text="Start Date" />
+
+ <EditText
+     android:id="@+id/edtStartDate"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignBottom="@+id/btnStartDate"
+     android:layout_alignLeft="@+id/btnCreateEvent"
+     android:ems="10"
+     android:hint="Start Date" />
+
+ <TextView
+     android:id="@+id/textView3"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="10dp"
+     android:layout_below="@+id/btnEndDate"
+     android:layout_alignLeft="@+id/btnEndDate"
+     android:text="Categories" />
+
+  
+ <Spinner
+     android:id="@+id/spinnerCategories"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="10dp"
+     
+     android:layout_alignLeft="@+id/btnCreateEvent"
+     android:layout_below="@+id/edtEndDate"
+     android:ems="10" />
+
+ <Button
+     android:id="@+id/btnCreateEvent"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignLeft="@+id/edtCity"
+     android:layout_below="@+id/spinnerCategories"
+     android:layout_marginTop="26dp"
+     android:text="Create Event" />
 
 </RelativeLayout>

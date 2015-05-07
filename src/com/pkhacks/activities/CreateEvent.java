@@ -1,6 +1,8 @@
 package com.pkhacks.activities;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -15,14 +17,18 @@ import android.app.Dialog;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-public class CreateEvent extends Activity implements OnClickListener {
-	EditText eventName, city, startDate, endDate;
+public class CreateEvent extends Activity implements OnClickListener, OnItemSelectedListener {
+	EditText eventName, city, startDate, endDate,url;
 	Button CreateEvent;
 	private DatePicker datePickerStartDate;
 	private ImageView startDateImg, endDateImg;
@@ -33,6 +39,7 @@ public class CreateEvent extends Activity implements OnClickListener {
 	private int day;
 	private boolean flag_checkDatePicker = false;
 	int sum1 = 0;
+	private int categoriesPosition=1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +51,20 @@ public class CreateEvent extends Activity implements OnClickListener {
 	}
 
 	private void setViews() {
+		addItemsOnSpinner();
 		eventName = (EditText) findViewById(R.id.edtEventName);
 		city = (EditText) findViewById(R.id.edtCity);
 		startDate = (EditText) findViewById(R.id.edtStartDate);
 		endDate = (EditText) findViewById(R.id.edtEndDate);
+		url = (EditText) findViewById(R.id.edtUrl);
 		CreateEvent = (Button) findViewById(R.id.btnCreateEvent);
 		CreateEvent.setOnClickListener(this);
 		startDateImg = (ImageView) findViewById(R.id.btnStartDate);
+		
 		startDateImg.setOnClickListener(this);
 		endDateImg = (ImageView) findViewById(R.id.btnEndDate);
 		endDateImg.setOnClickListener(this);
+		
 	}
 
 	public void setCurrentDateOnView() {
@@ -69,7 +80,21 @@ public class CreateEvent extends Activity implements OnClickListener {
 		datePickerStartDate.init(year, month, day, null);
 
 	}
-
+	 public void addItemsOnSpinner() {
+		 
+			Spinner categories = (Spinner) findViewById(R.id.spinnerCategories);
+			categories.setOnItemSelectedListener(this);
+			List<String> list = new ArrayList<String>();
+			list.add("Hackathons");
+			list.add("Competitive Programming");
+			list.add("Startup Weekends");
+			list.add("Conferences");
+			list.add("Tech Talks / Sessions");
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, list);
+			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			categories.setAdapter(dataAdapter);
+		  }
 	private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
 
 		// when dialog box is closed, below method will be called.
@@ -156,7 +181,7 @@ public class CreateEvent extends Activity implements OnClickListener {
 			String getCity = city.getText().toString();
 			String getStartDate = startDate.getText().toString();
 			String getEndDate = endDate.getText().toString();
-
+			String geturl = url.getText().toString();
 			// Force user to fill up the form
 			if (getEventName.equals("") && getCity.equals("")
 					&& getStartDate.equals("") && getEndDate.equals("")) {
@@ -172,7 +197,9 @@ public class CreateEvent extends Activity implements OnClickListener {
 				Event.put("City", getCity);
 				Event.put("start_date", getStartDate);
 				Event.put("end_date", getEndDate);
-				// Event.saveInBackground();
+				Event.put("event_type_id", categoriesPosition);
+				Event.put("link", geturl);
+				 Event.saveInBackground();
 				// Event.saveInBackground(new EventAdopter(a, resLocal,
 				// pkevents));
 				/*
@@ -197,6 +224,23 @@ public class CreateEvent extends Activity implements OnClickListener {
 			break;
 		}
 
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+			long arg3) {
+		// TODO Auto-generated method stub
+		categoriesPosition=arg2+1;
+		Toast.makeText(arg0.getContext(), 
+				"OnItemSelectedListener : " +categoriesPosition,
+				Toast.LENGTH_SHORT).show();
+		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
