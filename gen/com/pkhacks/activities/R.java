@@ -63,7 +63,7 @@ public final class R {
         public static final int Row_toggleimgView=0x7f0a0017;
         public static final int Rowinformation_imgView=0x7f0a0019;
         public static final int Sppinerbraches=0x7f0a000f;
-        public static final int action_settings=0x7f0a0025;
+        public static final int action_settings=0x7f0a0024;
         public static final int btnCreateEvent=0x7f0a000b;
         public static final int btnEndDate=0x7f0a0008;
         public static final int btnStartDate=0x7f0a0009;
@@ -71,7 +71,7 @@ public final class R {
         public static final int counter=0x7f0a0015;
         public static final int dismiss=0x7f0a0012;
         public static final int dpStartDate=0x7f0a0006;
-        public static final int drawer_layout=0x7f0a0022;
+        public static final int drawer_layout=0x7f0a0021;
         public static final int edtCity=0x7f0a0003;
         public static final int edtDateFrom=0x7f0a0010;
         public static final int edtEndDate=0x7f0a0007;
@@ -79,10 +79,10 @@ public final class R {
         public static final int edtStartDate=0x7f0a0005;
         public static final int edtUrl=0x7f0a0004;
         public static final int edtdateTo=0x7f0a0011;
-        public static final int frame_container=0x7f0a0023;
+        public static final int frame_container=0x7f0a0022;
         public static final int icon=0x7f0a0013;
-        public static final int list=0x7f0a0021;
-        public static final int list_slidermenu=0x7f0a0024;
+        public static final int list=0x7f0a0020;
+        public static final int list_slidermenu=0x7f0a0023;
         public static final int rel1=0x7f0a0016;
         public static final int rel2=0x7f0a001a;
         public static final int rel3=0x7f0a001d;
@@ -97,7 +97,6 @@ public final class R {
         public static final int textView3=0x7f0a000c;
         public static final int title=0x7f0a0014;
         public static final int tvurl=0x7f0a000a;
-        public static final int txtLabel=0x7f0a0020;
     }
     public static final class layout {
         public static final int activity_create_event=0x7f030000;
@@ -107,15 +106,10 @@ public final class R {
         public static final int event_list_fragment=0x7f030004;
         public static final int event_row_information=0x7f030005;
         public static final int event_row_list=0x7f030006;
-        public static final int fragment_community=0x7f030007;
-        public static final int fragment_find_people=0x7f030008;
-        public static final int fragment_home=0x7f030009;
-        public static final int fragment_pages=0x7f03000a;
-        public static final int fragment_photos=0x7f03000b;
-        public static final int fragment_whats_hot=0x7f03000c;
-        public static final int list_fragment=0x7f03000d;
-        public static final int list_item=0x7f03000e;
-        public static final int slidingmenuactivity=0x7f03000f;
+        public static final int fragment_home=0x7f030007;
+        public static final int list_fragment=0x7f030008;
+        public static final int list_item=0x7f030009;
+        public static final int slidingmenuactivity=0x7f03000a;
     }
     public static final class menu {
         public static final int create_event=0x7f090000;
