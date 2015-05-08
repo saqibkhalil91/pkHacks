@@ -30,8 +30,9 @@ import android.widget.Toast;
 public class CreateEvent extends Activity implements OnClickListener, OnItemSelectedListener {
 	EditText eventName, city, startDate, endDate,url;
 	Button CreateEvent;
-	private DatePicker datePickerStartDate;
+	
 	private ImageView startDateImg, endDateImg;
+	private DatePicker datePickerStartDate;
 	static final int DATE_DIALOG_ID = 999;
 	static final int DATE_DIALOG = 99;
 	private int year;
@@ -108,12 +109,12 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 			dateCalculations(fstDatepickerAns);
 			// set selected date into textview
 			if (flag_checkDatePicker) {
-				startDate.setText(new StringBuilder().append(month + 1)
-						.append("-").append(day).append("-").append(year)
+				startDate.setText(new StringBuilder().append(day).append("-").append(month + 1)
+						.append("-").append(year)
 						.append(" "));
 			} else {
-				endDate.setText(new StringBuilder().append(month + 1)
-						.append("-").append(day).append("-").append(year)
+				endDate.setText(new StringBuilder().append(day).append("-").append(month + 1)
+						.append("-").append(year)
 						.append(" "));
 			}
 			// set selected date into datepicker also
@@ -231,9 +232,7 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 			long arg3) {
 		// TODO Auto-generated method stub
 		categoriesPosition=arg2+1;
-		Toast.makeText(arg0.getContext(), 
-				"OnItemSelectedListener : " +categoriesPosition,
-				Toast.LENGTH_SHORT).show();
+		
 		
 	}
 

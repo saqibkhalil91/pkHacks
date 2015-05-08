@@ -9,7 +9,6 @@ import com.pkhacks.entities.PkHacksEvent;
 
 import com.pkhacks.fragments.HomeFragment;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
@@ -65,7 +64,7 @@ public class SlidingMenuActivity extends Activity {
 		eventList = new ArrayList<PkHacksEvent>();
 		eventList = (ArrayList<PkHacksEvent>) getIntent().getSerializableExtra(
 				"eventList");
-		
+
 		mTitle = mDrawerTitle = getTitle();
 
 		// load slide menu items
@@ -155,94 +154,6 @@ public class SlidingMenuActivity extends Activity {
 		}
 	}
 
-	/*public void addItemsOnCitySpinner() {
-
-		List<String> list = new ArrayList<String>();
-		list.add("list 1");
-		list.add("list 2");
-		list.add("list 3");
-		//ArrayList<PkHacksEvent> data = fragment.filterList;
-		//
-		//	Log.d("slidingevent naem", data.get(0).getCity());
-			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(),
-					android.R.layout.simple_spinner_item, list);
-			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			citySpinner.setAdapter(dataAdapter);
-		//}
-	}*/
-
-	/*@SuppressLint("InflateParams")
-	private void filter() {
-		LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
-				.getSystemService(LAYOUT_INFLATER_SERVICE);
-		View filterView = layoutInflater.inflate(R.layout.custom_filteroptions,
-				null);
-		final PopupWindow popupWindow = new PopupWindow(filterView,
-				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		citySpinner = (Spinner) filterView.findViewById(R.id.Sppinerbraches);
-		citySpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		
-		addItemsOnCitySpinner();
-		
-		 * final Spinner
-		 * spiner_projects=(Spinner)popupView.findViewById(R.id.SppinerProjects
-		 * ); final Spinner
-		 * spiner_projects=(Spinner)popupView.findViewById(R.id.
-		 * SppinerProjects); //
-		 * popupWindow.showAtLocation(R.layout.custom_filteroptions,
-		 * Gravity.NO_GRAVITY,35 + 50,20 + 50); datepickerfeildTodate =
-		 * (EditText)popupView.findViewById(R.id.edtdateTo); final Spinner
-		 * spiner_brnacher=(Spinner)popupView.findViewById(R.id.Sppinerbraches);
-		 * final Spinner
-		 * spiner_projects=(Spinner)popupView.findViewById(R.id.SppinerProjects
-		 * ); datepickerfeildFrom =
-		 * (EditText)popupView.findViewById(R.id.edtDateFrom);
-		 
-		Button btnDismiss = (Button) filterView.findViewById(R.id.dismiss);
-		// datepickerfeildFrom.setText(fromDate);
-		btnDismiss.setOnClickListener(new Button.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				popupWindow.dismiss();
-			}
-		});
-
-		// datefrom.setOnClickListener(this);
-		
-		 * datepickerfeildFrom.setOnClickListener(new OnClickListener(){
-		 * 
-		 * @Override public void onClick(View v) { // TODO Auto-generated method
-		 * stub flag=true; mydatePicker(); //
-		 * datepickerfeildFrom.setText(fromDate); }});
-		 * 
-		 * 
-		 * datepickerfeildTodate.setOnClickListener(new OnClickListener(){
-		 * 
-		 * @Override public void onClick(View v) { // TODO Auto-generated method
-		 * stub flag =false; mydatePicker(); //
-		 * datepickerfeildFrom.setText(fromDate); }});
-		 
-		popupWindow.showAtLocation(btnDismiss, 100, 100, 100);
-
-	}*/
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.slidingmenu, menu);
@@ -258,7 +169,7 @@ public class SlidingMenuActivity extends Activity {
 		// Handle action bar actions click bn
 		switch (item.getItemId()) {
 		case R.id.action_settings:
-			//filter();
+			// filter();
 			return false;
 		default:
 			return false;
@@ -275,14 +186,16 @@ public class SlidingMenuActivity extends Activity {
 		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
+
 	HomeFragment fragment = null;
+
 	/**
 	 * Diplaying fragment view for selected nav drawer list item
 	 * */
 	private void displayView(int position) {
 		// update the main content by replacing fragments
-		
-		fragment = new HomeFragment(eventList, position);
+
+		fragment = new HomeFragment(eventList, position + 1);
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()

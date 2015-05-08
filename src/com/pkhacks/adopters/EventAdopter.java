@@ -96,7 +96,10 @@ public class EventAdopter extends BaseAdapter {
 		return view;
 
 	}
-
+	public void updateDataList(List<PkHacksEvent> data)
+	{
+		 this.data = data;
+	}
 
 	public class viewHolder {
 
