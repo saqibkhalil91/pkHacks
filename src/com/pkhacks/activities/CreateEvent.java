@@ -9,11 +9,13 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.pkhacks.adopters.EventAdopter;
+import com.pkhacks.entities.PkHacksEvent;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,7 +32,7 @@ import android.widget.Toast;
 public class CreateEvent extends Activity implements OnClickListener, OnItemSelectedListener {
 	EditText eventName, city, startDate, endDate,url;
 	Button createEvent;
-	
+	ArrayList<PkHacksEvent> eventList;
 	private ImageView startDateImg, endDateImg;
 	private DatePicker datePickerStartDate;
 	static final int DATE_DIALOG_ID = 999;
@@ -42,10 +44,14 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 	int sum1 = 0;
 	private int categoriesPosition=1;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_event);
+		eventList = new ArrayList<PkHacksEvent>();
+		eventList = (ArrayList<PkHacksEvent>) getIntent().getSerializableExtra(
+				"eventList");
 		setViews();
 		setCurrentDateOnView();
 		
@@ -225,6 +231,15 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 			break;
 		}
 
+	}
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		Intent slidingMenu = new Intent(this,SlidingMenuActivity.class);
+		slidingMenu.putExtra("eventList", eventList);
+		startActivity(slidingMenu);
+		finish();
+		super.onBackPressed();
 	}
 
 	@Override

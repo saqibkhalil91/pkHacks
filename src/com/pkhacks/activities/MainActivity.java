@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 
 
+
 import com.pkhacks.asynctasks.EventAsyncTask;
 import com.pkhacks.entities.PkHacksEvent;
 import com.pkhacks.interfaces.EventListListener;
@@ -21,18 +22,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	ArrayList<PkHacksEvent> eventList;
+	TextView isLoading;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		eventList= new ArrayList<PkHacksEvent>();
+		isLoading =(TextView)findViewById(R.id.textView1);
 		ConnectionDetector cd = new ConnectionDetector(this);
 		boolean checkingConnection =cd.isConnectingToInternet();
 		if (checkingConnection==true)	{
 			EventAsyncTask api =  new EventAsyncTask(this);
+			isLoading.setText("PkHacks is loading");
 			
 			api.execute(null, null, null);
 			api.setApiResulListener(new EventListListener() {
@@ -41,6 +46,10 @@ public class MainActivity extends Activity {
 				public void setList(ArrayList<PkHacksEvent> list) {
 					// TODO Auto-generated method stub
 					eventList=list;
+					Intent slidingMenu = new Intent(getApplicationContext(),SlidingMenuActivity.class);
+					slidingMenu.putExtra("eventList", eventList);
+					startActivity(slidingMenu);
+					finish();
 					
 				}
 			});
@@ -74,10 +83,10 @@ public class MainActivity extends Activity {
 	   	
 	   	 helpBuilder.setPositiveButton("Thank you",
 	   	   new DialogInterface.OnClickListener() {
-	   		 
+	   		
 	   	    public void onClick(DialogInterface dialog, int which) {
 	   	    	
-	   	    	
+	   	    	isLoading.setText("Internet is not available");
 	   	    }
 	   	   });
 	   	 // Remember, create doesn't show the dialog
@@ -85,19 +94,7 @@ public class MainActivity extends Activity {
 	   	 helpDialog.show();
 
 	   	}
-	public void showDetail(View view)
-	{
-		Intent slidingMenu = new Intent(this,SlidingMenuActivity.class);
-		slidingMenu.putExtra("eventList", eventList);
-		startActivity(slidingMenu);
-		finish();
-	}
-	public void createNewEvent(View view)
-	{
-		Intent createEvetn = new Intent(this,CreateEvent.class);
-		startActivity(createEvetn);
-		finish();
-	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

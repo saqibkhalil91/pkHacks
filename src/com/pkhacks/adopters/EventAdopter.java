@@ -8,14 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pkhacks.activities.R;
 import com.pkhacks.entities.PkHacksEvent;
+import com.pkhacks.fragments.CategoriesListFragment;
 
-public class EventAdopter extends BaseAdapter {
+
+public class EventAdopter extends BaseAdapter  {
 
 	private Context mContext;
 	private LayoutInflater inflater = null;
@@ -79,7 +83,7 @@ public class EventAdopter extends BaseAdapter {
 		} else
 			holder = (viewHolder) view.getTag();
 		if (null == data || data.size() == 0) {
-			holder.eventName.setText("No Data");
+			holder.eventName.setText("Record not found");
 			holder.startDate.setText("");
 			holder.endDate.setText("");
 			holder.city.setText("");
@@ -94,9 +98,9 @@ public class EventAdopter extends BaseAdapter {
 			holder.startDate.setText(tempValues.getStartDate());
 			holder.endDate.setText(tempValues.getEndDate());
 			holder.city.setText(tempValues.getCity());
-			holder.website.setText(tempValues.getLink());
+			holder.website.setText("");
 			holder.toggleImage.setImageResource(R.drawable.ic_home);
-
+			
 		}
 		return view;
 
@@ -116,5 +120,10 @@ public class EventAdopter extends BaseAdapter {
 		TextView endDate;
 
 	}
+	
+
+	
+
+	
 
 }

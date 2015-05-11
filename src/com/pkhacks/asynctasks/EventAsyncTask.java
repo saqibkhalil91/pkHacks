@@ -32,13 +32,13 @@ public class EventAsyncTask extends AsyncTask<Void, Void, Void> {
 	protected void onPreExecute() {
 		super.onPreExecute();
 		// Create a progressdialog
-		mProgressDialog = new ProgressDialog(context);
+		/*mProgressDialog = new ProgressDialog(context);
 
 		// Set progressdialog message
 		mProgressDialog.setMessage("Loading...");
 		mProgressDialog.setIndeterminate(false);
 		// Show progressdialog
-		mProgressDialog.show();
+		mProgressDialog.show();*/
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class EventAsyncTask extends AsyncTask<Void, Void, Void> {
 		 * R.layout.listview_item);
 		 */
 		// Retrieve object "name" from Parse.com database
-		mProgressDialog.dismiss();
+		//mProgressDialog.dismiss();
 		this.eventList = new ArrayList<PkHacksEvent>();
 		try {
 			for (ParseObject event : events) {

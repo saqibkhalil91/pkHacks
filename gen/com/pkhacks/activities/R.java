@@ -32,6 +32,11 @@ public final class R {
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
+         Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
+    
+
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
@@ -67,8 +72,8 @@ public final class R {
         public static final int btnCreateEvent=0x7f0a000b;
         public static final int btnEndDate=0x7f0a0008;
         public static final int btnStartDate=0x7f0a0009;
-        public static final int button2=0x7f0a000e;
         public static final int counter=0x7f0a0015;
+        public static final int createEvent=0x7f0a0025;
         public static final int dismiss=0x7f0a0012;
         public static final int dpStartDate=0x7f0a0006;
         public static final int drawer_layout=0x7f0a0021;
@@ -97,24 +102,27 @@ public final class R {
         public static final int textView3=0x7f0a000c;
         public static final int title=0x7f0a0014;
         public static final int tvurl=0x7f0a000a;
+        public static final int webView1=0x7f0a000e;
     }
     public static final class layout {
         public static final int activity_create_event=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int custom_filteroptions=0x7f030002;
-        public static final int drawer_list_item=0x7f030003;
-        public static final int event_list_fragment=0x7f030004;
-        public static final int event_row_information=0x7f030005;
-        public static final int event_row_list=0x7f030006;
-        public static final int fragment_home=0x7f030007;
-        public static final int list_fragment=0x7f030008;
-        public static final int list_item=0x7f030009;
-        public static final int slidingmenuactivity=0x7f03000a;
+        public static final int activity_web_view=0x7f030002;
+        public static final int custom_filteroptions=0x7f030003;
+        public static final int drawer_list_item=0x7f030004;
+        public static final int event_list_fragment=0x7f030005;
+        public static final int event_row_information=0x7f030006;
+        public static final int event_row_list=0x7f030007;
+        public static final int fragment_home=0x7f030008;
+        public static final int list_fragment=0x7f030009;
+        public static final int list_item=0x7f03000a;
+        public static final int slidingmenuactivity=0x7f03000b;
     }
     public static final class menu {
         public static final int create_event=0x7f090000;
         public static final int main=0x7f090001;
         public static final int slidingmenu=0x7f090002;
+        public static final int web_view=0x7f090003;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
@@ -127,6 +135,7 @@ public final class R {
         public static final int hello_world=0x7f060002;
         public static final int imgdesc=0x7f060006;
         public static final int title_activity_create_event=0x7f060003;
+        public static final int title_activity_web_view=0x7f060008;
     }
     public static final class style {
         /** 

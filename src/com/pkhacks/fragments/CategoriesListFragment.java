@@ -16,7 +16,10 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ActionBar.LayoutParams;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.net.ParseException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +41,9 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.pkhacks.activities.CreateEvent;
 import com.pkhacks.activities.R;
+import com.pkhacks.activities.WebViewActivity;
 import com.pkhacks.adopters.EventAdopter;
 import com.pkhacks.entities.PkHacksEvent;
 
@@ -75,6 +80,27 @@ public class CategoriesListFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_home, container,
 				false);
 		lv = (ListView) rootView.findViewById(R.id.list);
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				PkHacksEvent selectedItem = (PkHacksEvent) arg0
+					      .getItemAtPosition(arg2);
+				 Intent intent = new Intent(getActivity(), WebViewActivity.class);
+				 intent.putExtra("url", selectedItem.getLink());
+					Log.d("url is ", selectedItem.getLink());
+				    startActivity(intent);
+			/*	Intent internetIntent = new Intent(Intent.ACTION_VIEW,
+						Uri.parse(selectedItem.getLink()));
+						internetIntent.setComponent(new ComponentName("com.android.browser","com.android.browser.BrowserActivity"));
+						internetIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(internetIntent);*/
+				//Toast.makeText(getActivity(), selectedItem.getCity(), Toast.LENGTH_SHORT).show();
+				
+			}
+		});
 
 		return rootView;
 	}
@@ -433,6 +459,12 @@ public class CategoriesListFragment extends Fragment {
 		switch (item.getItemId()) {
 		case R.id.action_settings:
 			filter();
+			return true;
+		case R.id.createEvent:
+			Intent createEvetn = new Intent(getActivity(),CreateEvent.class);
+			createEvetn.putExtra("eventList", eventList);
+			startActivity(createEvetn);
+			getActivity().finish();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
