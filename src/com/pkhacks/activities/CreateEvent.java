@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 public class CreateEvent extends Activity implements OnClickListener, OnItemSelectedListener {
 	EditText eventName, city, startDate, endDate,url;
-	Button CreateEvent;
+	Button createEvent;
 	
 	private ImageView startDateImg, endDateImg;
 	private DatePicker datePickerStartDate;
@@ -58,8 +58,8 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 		startDate = (EditText) findViewById(R.id.edtStartDate);
 		endDate = (EditText) findViewById(R.id.edtEndDate);
 		url = (EditText) findViewById(R.id.edtUrl);
-		CreateEvent = (Button) findViewById(R.id.btnCreateEvent);
-		CreateEvent.setOnClickListener(this);
+		createEvent = (Button) findViewById(R.id.btnCreateEvent);
+		createEvent.setOnClickListener(this);
 		startDateImg = (ImageView) findViewById(R.id.btnStartDate);
 		
 		startDateImg.setOnClickListener(this);
