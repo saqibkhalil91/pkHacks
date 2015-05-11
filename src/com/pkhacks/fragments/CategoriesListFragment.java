@@ -260,6 +260,7 @@ public class CategoriesListFragment extends Fragment {
 				.getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
 
 		final Dialog dialog = new Dialog(getActivity());
+		dialog.setTitle("Filter");
 		dialog.setContentView(R.layout.custom_filteroptions);
 	
 

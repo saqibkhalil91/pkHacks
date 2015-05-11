@@ -65,7 +65,6 @@ public final class R {
         public static final int list_selector_flatcolor=0x7f020011;
     }
     public static final class id {
-        public static final int Row_toggleimgView=0x7f0a0017;
         public static final int Rowinformation_imgView=0x7f0a0019;
         public static final int Sppinerbraches=0x7f0a000f;
         public static final int action_settings=0x7f0a0024;
@@ -95,6 +94,7 @@ public final class R {
         public static final int row_endTime=0x7f0a001b;
         public static final int row_eventName=0x7f0a0018;
         public static final int row_startTime=0x7f0a001c;
+        public static final int row_toggleimgView=0x7f0a0017;
         public static final int row_website=0x7f0a001f;
         public static final int spinnerCategories=0x7f0a000d;
         public static final int textView1=0x7f0a0000;

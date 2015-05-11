@@ -14,6 +14,15 @@ public class PkHacksEvent implements Serializable {
 	private String startDate;
 	private String endDate;
 	private String link;
+	private boolean isChecked;
+	public boolean isChecked() {
+		return isChecked;
+	}
+
+	public void setChecked(boolean isChecked) {
+		this.isChecked = isChecked;
+	}
+
 	private int eventType;
 
 	public void createObjectFromParsePbj(ParseObject parseObject) {
