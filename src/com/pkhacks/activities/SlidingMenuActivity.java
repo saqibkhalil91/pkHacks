@@ -7,7 +7,7 @@ import com.pkhacks.adopters.NavDrawerListAdapter;
 import com.pkhacks.entities.NavDrawerItem;
 import com.pkhacks.entities.PkHacksEvent;
 
-import com.pkhacks.fragments.HomeFragment;
+import com.pkhacks.fragments.CategoriesListFragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -187,7 +187,7 @@ public class SlidingMenuActivity extends Activity {
 		return super.onPrepareOptionsMenu(menu);
 	}
 
-	HomeFragment fragment = null;
+	CategoriesListFragment fragment = null;
 
 	/**
 	 * Diplaying fragment view for selected nav drawer list item
@@ -195,7 +195,7 @@ public class SlidingMenuActivity extends Activity {
 	private void displayView(int position) {
 		// update the main content by replacing fragments
 
-		fragment = new HomeFragment(eventList, position + 1);
+		fragment = new CategoriesListFragment(eventList, position + 1);
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()

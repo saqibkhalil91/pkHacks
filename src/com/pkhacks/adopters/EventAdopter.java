@@ -80,8 +80,13 @@ public class EventAdopter extends BaseAdapter {
 			holder = (viewHolder) view.getTag();
 		if (null == data || data.size() == 0) {
 			holder.eventName.setText("No Data");
+			holder.startDate.setText("");
+			holder.endDate.setText("");
+			holder.city.setText("");
+			holder.website.setText("");
+			holder.toggleImage.setVisibility(view.INVISIBLE);
 		}
-		{
+		else{
 			/***** Get each Model object from Arraylist ********/
 			tempValues = (PkHacksEvent) data.get(paramInt);
 			/************ Set Model values in Holder elements ***********/
