@@ -190,8 +190,8 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 			String getEndDate = endDate.getText().toString();
 			String geturl = url.getText().toString();
 			// Force user to fill up the form
-			if (getEventName.equals("") && getCity.equals("")
-					&& getStartDate.equals("") && getEndDate.equals("")) {
+			if (getEventName.equals("") || getCity.equals("")
+					|| getStartDate.equals("") ||getEndDate.equals("")) {
 				Toast.makeText(getApplicationContext(),
 						"Please complete the sign up form", Toast.LENGTH_LONG)
 						.show();
