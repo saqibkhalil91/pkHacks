@@ -112,7 +112,7 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 			day = selectedDay;
 			String fstDatepickerAns = new StringBuilder().append(day)
 					.append(month + 1).append(year).toString();
-			dateCalculations(fstDatepickerAns);
+		
 			// set selected date into textview
 			if (flag_checkDatePicker) {
 				startDate.setText(new StringBuilder().append(day).append("-").append(month + 1)
@@ -129,19 +129,7 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 		}
 	};
 
-	public void dateCalculations(String a) {
-		int sum = 0;
-		char c;
-		int bb = 0;
-		for (int i = 0; i < a.length(); i++) {
-			c = a.charAt(i);
-			bb = Character.getNumericValue(c);
-			sum = sum + bb;
-
-		}
-		sum1 = sum;
-	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
