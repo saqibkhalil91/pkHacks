@@ -173,11 +173,14 @@ public class EventAdopter extends BaseAdapter  {
 		Intent intent = new Intent(Intent.ACTION_EDIT);
 		intent.setType("vnd.android.cursor.item/event");
 		//String startMonth=getMonthForInt(holder.startDate.getText());
-		intent.putExtra("eventName", holder.eventName.getText().toString());
-		intent.putExtra("startDate", convertDateToMiliSeconds( holder.startDate.getText().toString()).getTime());
-		intent.putExtra("endDate",convertDateToMiliSeconds( holder.endDate.getText().toString()).getTime());
-		intent.putExtra("city", holder.city.getText().toString());
-		intent.putExtra("website", holder.website.getText().toString());
+
+		intent.putExtra("beginTime", convertDateToMiliSeconds( holder.endDate.getText().toString()).getTime());
+		intent.putExtra("allDay", false);
+		intent.putExtra("rrule", "FREQ=DAILY");
+		intent.putExtra("endTime",convertDateToMiliSeconds( holder.startDate.getText().toString()).getTime());
+	
+	
+		intent.putExtra("title",holder.eventName.getText().toString());
 		mContext.startActivity(intent);
 	}
 	
@@ -192,15 +195,7 @@ public class EventAdopter extends BaseAdapter  {
 		return date;
 	
 	}
-	private String getMonthForInt(int num) {
-        String month = "wrong";
-        DateFormatSymbols dfs = new DateFormatSymbols();
-        String[] months = dfs.getMonths();
-        if (num >= 0 && num <= 11 ) {
-            month = months[num];
-        }
-        return month;
-    }
+	
 	
 
 	

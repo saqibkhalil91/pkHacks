@@ -63,7 +63,7 @@ public class CategoriesListFragment extends Fragment {
 	private DatePicker datePickerStartDate;
 	private boolean flag_checkDatePicker = false;
 	private ArrayList<Date> startDateListValues,endDateListValues;
-
+	private ArrayList<PkHacksEvent> newFilterList;
 	@SuppressLint("ValidFragment")
 	public CategoriesListFragment(ArrayList<PkHacksEvent> eventList, int pos) {
 		// TODO Auto-generated constructor stub
@@ -324,8 +324,8 @@ public class CategoriesListFragment extends Fragment {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			System.out.print(startDate);
-				adopter.updateDataList(dateFilterList);
+			//System.out.print(startDate);
+				adopter.updateDataList(newFilterList);
 				adopter.notifyDataSetChanged();
 
 				dialog.dismiss();
@@ -336,6 +336,29 @@ public class CategoriesListFragment extends Fragment {
 
 	}
 	private void getFilteredListByCityDate() throws java.text.ParseException
+	{
+		newFilterList = new ArrayList<PkHacksEvent>();
+		newFilterList =filterList;
+		if(selectedCity.length()>0 && !selectedCity.equals(""))
+		{
+			getFilteredCityList();
+		}
+		if (startDateFromDatePicker!=null)
+		{
+
+			setStartDateList();
+		}
+		if(endDateFromDatePicker!=null&&endDate.getText().toString().length()>0)
+		{
+
+			getFilteredEndDateList(); 
+			
+		} 
+	
+		
+		
+	}
+	/*private void getFilteredListByCityDate() throws java.text.ParseException
 	{
 		
 		dateFilterList = new ArrayList<PkHacksEvent>();
@@ -429,7 +452,7 @@ public class CategoriesListFragment extends Fragment {
 				}
 				
 			}
-	}
+	}*/
 	/**/
 	private String getMonthForInt(int num) {
         String month = "wrong";
@@ -472,6 +495,107 @@ public class CategoriesListFragment extends Fragment {
 		}
 		// return super.onOptionsItemSelected(item);
 	}
+	private void getFilteredCityList()
+	{
+		newFilterList = new ArrayList<PkHacksEvent>();
+		for (int i = 0; i < filterList.size(); i++) {
+			if (filterList.get(i).getCity().equals(selectedCity)) {
+				newFilterList.add(filterList.get(i));
+
+			}
+		}
+	}
+	@SuppressLint("SimpleDateFormat")
+	private void setStartDateList() 
+	{
+			getFilteredCityList();
+			if(selectedCity.equals(""))
+			{
+			
+					for (int i = 0; i < filterList.size(); i++) {
+					try {
+						if(getDateObject(filterList.get(i).getStartDate()).equals(startDateFromDatePicker))
+						newFilterList.add(filterList.get(i));
+					} catch (java.text.ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}	
+			}
+			else
+			{
+				for (int i = 0; i < newFilterList.size(); i++) {
+					
+					if(!newFilterList.get(i).getStartDate().equals(startDateFromDatePicker))
+						{
+						newFilterList.remove(i);
+						}			
+					}
+				
+			}
+	}
+	private void getFilteredEndDateList() 
+	{
+		getFilteredCityList();
+		if(selectedCity.equals("") && startDateFromDatePicker.equals(null))
+		{
+		
+				for (int i = 0; i < filterList.size(); i++) {
+				try {
+					if(getDateObject(filterList.get(i).getEndDate()).equals(endDateFromDatePicker))
+					newFilterList.add(filterList.get(i));
+				} catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}	
+		}
+		else{
+			for (int i = 0; i < newFilterList.size(); i++) {
+				
+				if(!newFilterList.get(i).getEndDate().equals(endDateFromDatePicker))
+					{
+					newFilterList.remove(i);
+					}			
+				}
+			
+		}
+	}
+	/*	private void getFilteredStartDateList() throws java.text.ParseException
+	{
+		setStartDateList();
+		dateFilterList = new ArrayList<PkHacksEvent>();
+		for (int i = 0; i < startDateListValues.size(); i++) {
+		if (startDateListValues.get(i).equals(startDateFromDatePicker)) {
+				dateFilterList.add(filterList.get(i));
+
+			}
+		}
+	}
+	@SuppressLint("SimpleDateFormat")
+	private void setEndDateList() throws java.text.ParseException
+	{
+		
+		endDateListValues = new ArrayList<Date>();
+		for (int i = 0; i < filterList.size(); i++) {
+			
+			endDateListValues.add(getDateObject(filterList.get(i).getEndDate()));
+			
+		
+		}
+	}
+
+	private void getFilteredEndDateList() throws java.text.ParseException
+	{
+		//setEndDateList();
+		dateFilterList = new ArrayList<PkHacksEvent>();
+		for (int i = 0; i < filterList.size(); i++) {
+		if (getDateObject(filterList.get(i).getEndDate()).equals(endDateFromDatePicker)) {
+				dateFilterList.add(filterList.get(i));
+
+			}
+		}
+	}*/
 
 
 }
