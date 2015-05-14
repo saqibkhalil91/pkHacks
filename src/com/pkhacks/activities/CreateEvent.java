@@ -1,5 +1,6 @@
 package com.pkhacks.activities;
 
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -115,12 +116,13 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 		
 			// set selected date into textview
 			if (flag_checkDatePicker) {
-				startDate.setText(new StringBuilder().append(day).append("-").append(month + 1)
-						.append("-").append(year)
+				String strMonth=getMonthForInt(month);
+				startDate.setText(new StringBuilder().append(day).append(" ").append(strMonth + 1)
+						.append(" ").append(year)
 						.append(" "));
 			} else {
-				endDate.setText(new StringBuilder().append(day).append("-").append(month + 1)
-						.append("-").append(year)
+				endDate.setText(new StringBuilder().append(day).append(" ").append(month + 1)
+						.append(" ").append(year)
 						.append(" "));
 			}
 			// set selected date into datepicker also
@@ -220,6 +222,15 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 		}
 
 	}
+	private String getMonthForInt(int num) {
+        String month = "wrong";
+        DateFormatSymbols dfs = new DateFormatSymbols();
+        String[] months = dfs.getMonths();
+        if (num >= 0 && num <= 11 ) {
+            month = months[num];
+        }
+        return month;
+    }
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub

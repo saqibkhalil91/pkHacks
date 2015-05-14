@@ -325,7 +325,7 @@ public class CategoriesListFragment extends Fragment {
 					e.printStackTrace();
 				}
 			//System.out.print(startDate);
-				adopter.updateDataList(newFilterList);
+				adopter.updateDataList(dateFilterList);
 				adopter.notifyDataSetChanged();
 
 				dialog.dismiss();
@@ -335,7 +335,7 @@ public class CategoriesListFragment extends Fragment {
 		dialog.show();
 
 	}
-	private void getFilteredListByCityDate() throws java.text.ParseException
+	/*private void getFilteredListByCityDate() throws java.text.ParseException
 	{
 		newFilterList = new ArrayList<PkHacksEvent>();
 		newFilterList =filterList;
@@ -357,8 +357,8 @@ public class CategoriesListFragment extends Fragment {
 	
 		
 		
-	}
-	/*private void getFilteredListByCityDate() throws java.text.ParseException
+	}*/
+	private void getFilteredListByCityDate() throws java.text.ParseException
 	{
 		
 		dateFilterList = new ArrayList<PkHacksEvent>();
@@ -452,7 +452,7 @@ public class CategoriesListFragment extends Fragment {
 				}
 				
 			}
-	}*/
+	}
 	/**/
 	private String getMonthForInt(int num) {
         String month = "wrong";
@@ -505,7 +505,7 @@ public class CategoriesListFragment extends Fragment {
 			}
 		}
 	}
-	@SuppressLint("SimpleDateFormat")
+
 	private void setStartDateList() 
 	{
 			getFilteredCityList();
@@ -526,15 +526,25 @@ public class CategoriesListFragment extends Fragment {
 			{
 				for (int i = 0; i < newFilterList.size(); i++) {
 					
-					if(!newFilterList.get(i).getStartDate().equals(startDateFromDatePicker))
+						try {
+								if((getDateObject(newFilterList.get(i).getStartDate()).equals(startDateFromDatePicker)||(getDateObject(newFilterList.get(i).getStartDate()).after(startDateFromDatePicker))))
+									{
+										continue;
+									}
+								else{
+									newFilterList.remove(i);
+									}
+							} 
+						catch (java.text.ParseException e) 
 						{
-						newFilterList.remove(i);
-						}			
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				
 			}
 	}
-	private void getFilteredEndDateList() 
+/*	private void getFilteredEndDateList() 
 	{
 		getFilteredCityList();
 		if(selectedCity.equals("") && startDateFromDatePicker.equals(null))
@@ -550,52 +560,27 @@ public class CategoriesListFragment extends Fragment {
 				}
 			}	
 		}
-		else{
+		else {
 			for (int i = 0; i < newFilterList.size(); i++) {
 				
-				if(!newFilterList.get(i).getEndDate().equals(endDateFromDatePicker))
-					{
-					newFilterList.remove(i);
-					}			
+				try {
+						if((getDateObject(newFilterList.get(i).getEndDate()).equals(endDateFromDatePicker)||(getDateObject(newFilterList.get(i).getEndDate()).after(endDateFromDatePicker))))
+							{
+								continue;
+							}
+						else{
+							newFilterList.remove(i);
+							}
+					} 
+				catch (java.text.ParseException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			
-		}
-	}
-	/*	private void getFilteredStartDateList() throws java.text.ParseException
-	{
-		setStartDateList();
-		dateFilterList = new ArrayList<PkHacksEvent>();
-		for (int i = 0; i < startDateListValues.size(); i++) {
-		if (startDateListValues.get(i).equals(startDateFromDatePicker)) {
-				dateFilterList.add(filterList.get(i));
-
 			}
+			
 		}
 	}
-	@SuppressLint("SimpleDateFormat")
-	private void setEndDateList() throws java.text.ParseException
-	{
-		
-		endDateListValues = new ArrayList<Date>();
-		for (int i = 0; i < filterList.size(); i++) {
-			
-			endDateListValues.add(getDateObject(filterList.get(i).getEndDate()));
-			
-		
-		}
-	}
-
-	private void getFilteredEndDateList() throws java.text.ParseException
-	{
-		//setEndDateList();
-		dateFilterList = new ArrayList<PkHacksEvent>();
-		for (int i = 0; i < filterList.size(); i++) {
-		if (getDateObject(filterList.get(i).getEndDate()).equals(endDateFromDatePicker)) {
-				dateFilterList.add(filterList.get(i));
-
-			}
-		}
-	}*/
-
+	*/
 
 }
