@@ -57,13 +57,14 @@ public class CategoriesListFragment extends Fragment {
 	int pos = 0;
 	private Spinner citySpinner;
 	private String selectedCity;
-	private ArrayList<PkHacksEvent> cityFilterList,dateFilterList;
+	private ArrayList<PkHacksEvent> cityFilterList, dateFilterList;
 	EditText startDate, endDate;
-	Date startDateFromDatePicker,endDateFromDatePicker;
+	Date startDateFromDatePicker, endDateFromDatePicker;
 	private DatePicker datePickerStartDate;
 	private boolean flag_checkDatePicker = false;
-	private ArrayList<Date> startDateListValues,endDateListValues;
+	private ArrayList<Date> startDateListValues, endDateListValues;
 	private ArrayList<PkHacksEvent> newFilterList;
+
 	@SuppressLint("ValidFragment")
 	public CategoriesListFragment(ArrayList<PkHacksEvent> eventList, int pos) {
 		// TODO Auto-generated constructor stub
@@ -87,18 +88,23 @@ public class CategoriesListFragment extends Fragment {
 					long arg3) {
 				// TODO Auto-generated method stub
 				PkHacksEvent selectedItem = (PkHacksEvent) arg0
-					      .getItemAtPosition(arg2);
-				 Intent intent = new Intent(getActivity(), WebViewActivity.class);
-				 intent.putExtra("url", selectedItem.getLink());
-					Log.d("url is ", selectedItem.getLink());
-				    startActivity(intent);
-			/*	Intent internetIntent = new Intent(Intent.ACTION_VIEW,
-						Uri.parse(selectedItem.getLink()));
-						internetIntent.setComponent(new ComponentName("com.android.browser","com.android.browser.BrowserActivity"));
-						internetIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						startActivity(internetIntent);*/
-				//Toast.makeText(getActivity(), selectedItem.getCity(), Toast.LENGTH_SHORT).show();
-				
+						.getItemAtPosition(arg2);
+				Intent intent = new Intent(getActivity(), WebViewActivity.class);
+				intent.putExtra("url", selectedItem.getLink());
+				Log.d("url is ", selectedItem.getLink());
+				startActivity(intent);
+				/*
+				 * Intent internetIntent = new Intent(Intent.ACTION_VIEW,
+				 * Uri.parse(selectedItem.getLink()));
+				 * internetIntent.setComponent(new
+				 * ComponentName("com.android.browser"
+				 * ,"com.android.browser.BrowserActivity"));
+				 * internetIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				 * startActivity(internetIntent);
+				 */
+				// Toast.makeText(getActivity(), selectedItem.getCity(),
+				// Toast.LENGTH_SHORT).show();
+
 			}
 		});
 
@@ -156,7 +162,7 @@ public class CategoriesListFragment extends Fragment {
 
 		cityList = new ArrayList<String>();
 		cityList.add("");
-		for (int i = 0; i <filterList.size(); i++) {
+		for (int i = 0; i < filterList.size(); i++) {
 			cityList.add(filterList.get(i).getCity());
 		}
 		cityList = removeDuplicates(cityList);
@@ -200,58 +206,57 @@ public class CategoriesListFragment extends Fragment {
 
 		return cityList;
 	}
+
 	private void showDatePicker() {
-        DatePickerFragment date = new DatePickerFragment();
-            /**
-             * Set Up Current Date Into dialog
-             */
-            Calendar calender = Calendar.getInstance();
-            Bundle args = new Bundle();
-            args.putInt("year", calender.get(Calendar.YEAR));
-            args.putInt("month", calender.get(Calendar.MONTH));
-            args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
-            date.setArguments(args);
-            /**
-             * Set Call back to capture selected date
-             */
-            date.setCallBack(new OnDateSetListener() {
-				
-				@Override
-				public void onDateSet(DatePicker view, int year, int monthOfYear,
-						int dayOfMonth) {
-					// TODO Auto-generated method stub
-					String month=getMonthForInt(monthOfYear);
-					
-					if (flag_checkDatePicker) {
-						startDate.setText(String.valueOf(dayOfMonth) + " " + month
-				                 + " " + String.valueOf(year));
-						try {
-							
-						 startDateFromDatePicker = getDateObject(startDate.getText().toString());
-						} catch (java.text.ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						
-					} else {
-						endDate.setText(String.valueOf(dayOfMonth) + " " + month
-				                 + " " + String.valueOf(year));
-						
+		DatePickerFragment date = new DatePickerFragment();
+		/**
+		 * Set Up Current Date Into dialog
+		 */
+		Calendar calender = Calendar.getInstance();
+		Bundle args = new Bundle();
+		args.putInt("year", calender.get(Calendar.YEAR));
+		args.putInt("month", calender.get(Calendar.MONTH));
+		args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+		date.setArguments(args);
+		/**
+		 * Set Call back to capture selected date
+		 */
+		date.setCallBack(new OnDateSetListener() {
+
+			@Override
+			public void onDateSet(DatePicker view, int year, int monthOfYear,
+					int dayOfMonth) {
+				// TODO Auto-generated method stub
+				String month = getMonthForInt(monthOfYear);
+
+				if (flag_checkDatePicker) {
+					startDate.setText(String.valueOf(dayOfMonth) + " " + month
+							+ " " + String.valueOf(year));
 					try {
-						endDateFromDatePicker = getDateObject(endDate.getText().toString());
+
+						startDateFromDatePicker = getDateObject(startDate
+								.getText().toString());
 					} catch (java.text.ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+
+				} else {
+					endDate.setText(String.valueOf(dayOfMonth) + " " + month
+							+ " " + String.valueOf(year));
+
+					try {
+						endDateFromDatePicker = getDateObject(endDate.getText()
+								.toString());
+					} catch (java.text.ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
-			});
-            date.show(getFragmentManager(), "Date Picker");
-           }
-
-          
-
-  
+			}
+		});
+		date.show(getFragmentManager(), "Date Picker");
+	}
 
 	@SuppressLint("InflateParams")
 	private void filter() {
@@ -262,7 +267,6 @@ public class CategoriesListFragment extends Fragment {
 		final Dialog dialog = new Dialog(getActivity());
 		dialog.setTitle("Filter");
 		dialog.setContentView(R.layout.custom_filteroptions);
-	
 
 		citySpinner = (Spinner) dialog.findViewById(R.id.Sppinerbraches);
 
@@ -293,7 +297,7 @@ public class CategoriesListFragment extends Fragment {
 				// TODO Auto-generated method stub
 				flag_checkDatePicker = true;
 				showDatePicker();
-				
+
 			}
 		});
 
@@ -315,16 +319,16 @@ public class CategoriesListFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-			//	getFilteredCityList();
+
+				// getFilteredCityList();
 				try {
-					//getFilteredStartDateList()
+					// getFilteredStartDateList()
 					getFilteredListByCityDate();
 				} catch (java.text.ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			//System.out.print(startDate);
+				// System.out.print(startDate);
 				adopter.updateDataList(dateFilterList);
 				adopter.notifyDataSetChanged();
 
@@ -335,148 +339,48 @@ public class CategoriesListFragment extends Fragment {
 		dialog.show();
 
 	}
-	/*private void getFilteredListByCityDate() throws java.text.ParseException
-	{
+
+	private void getFilteredListByCityDate() throws java.text.ParseException {
 		newFilterList = new ArrayList<PkHacksEvent>();
-		newFilterList =filterList;
-		if(selectedCity.length()>0 && !selectedCity.equals(""))
-		{
+		newFilterList = filterList;
+		if (selectedCity.length() > 0 && !selectedCity.equals("")) {
 			getFilteredCityList();
 		}
-		if (startDateFromDatePicker!=null)
-		{
+		if (startDateFromDatePicker != null) {
 
 			setStartDateList();
 		}
-		if(endDateFromDatePicker!=null&&endDate.getText().toString().length()>0)
-		{
+		if (endDateFromDatePicker != null
+				&& endDate.getText().toString().length() > 0) {
 
-			getFilteredEndDateList(); 
-			
-		} 
-	
-		
-		
-	}*/
-	private void getFilteredListByCityDate() throws java.text.ParseException
-	{
-		
-		dateFilterList = new ArrayList<PkHacksEvent>();
-			if(selectedCity!=null && !selectedCity.equals(""))
-			{
-				if(startDateFromDatePicker!=null)
-				{
-					if(endDateFromDatePicker!=null)
-					{
-						for (int i = 0; i < filterList.size(); i++) {
-							if (filterList.get(i).getCity().equals(selectedCity)&& (getDateObject(filterList.get(i).getStartDate()).equals(startDateFromDatePicker)||getDateObject(filterList.get(i).getStartDate()).after(startDateFromDatePicker)) &&(getDateObject(filterList.get(i).getEndDate()).equals(endDateFromDatePicker)|| getDateObject(filterList.get(i).getEndDate()).before(endDateFromDatePicker))) {
-								dateFilterList.add(filterList.get(i));
-	
-							}
-							
-						}
-					}
-					else
-					{
-						for (int i = 0; i < filterList.size(); i++) {
-							if (filterList.get(i).getCity().equals(selectedCity)&& (getDateObject(filterList.get(i).getStartDate()).equals(startDateFromDatePicker)||getDateObject(filterList.get(i).getStartDate()).after(startDateFromDatePicker))) {
-								dateFilterList.add(filterList.get(i));
-	
-							}
-							
-						}
-					}
-					
-				}else if(endDateFromDatePicker!=null)
-				{
-					for (int i = 0; i < filterList.size(); i++) {
-						if (filterList.get(i).getCity().equals(selectedCity) &&(getDateObject(filterList.get(i).getEndDate()).equals(endDateFromDatePicker)|| getDateObject(filterList.get(i).getEndDate()).before(endDateFromDatePicker))) {
-							dateFilterList.add(filterList.get(i));
+			getFilteredEndDateList();
 
-						}
-						
-					}
-				}
-				else
-				{
-					for (int i = 0; i < filterList.size(); i++) {
-						if (filterList.get(i).getCity().equals(selectedCity)) {
-							dateFilterList.add(filterList.get(i));
+		}
 
-						}
-						
-					}
-				}
-			}
-			else if(startDateFromDatePicker!=null){
-
-				if(endDateFromDatePicker!=null)
-				{
-					for (int i = 0; i < filterList.size(); i++) {
-						if ((getDateObject(filterList.get(i).getStartDate()).equals(startDateFromDatePicker)||getDateObject(filterList.get(i).getStartDate()).after(startDateFromDatePicker)) &&(getDateObject(filterList.get(i).getEndDate()).equals(endDateFromDatePicker)|| getDateObject(filterList.get(i).getEndDate()).before(endDateFromDatePicker))) {
-							dateFilterList.add(filterList.get(i));
-
-						}
-						
-					}
-				}
-				else
-				{
-					for (int i = 0; i < filterList.size(); i++) {
-						if ( (getDateObject(filterList.get(i).getStartDate()).equals(startDateFromDatePicker)||getDateObject(filterList.get(i).getStartDate()).after(startDateFromDatePicker))) {
-							dateFilterList.add(filterList.get(i));
-
-						}
-						
-					}
-				}
-				
-			
-			}else if(endDateFromDatePicker!=null)
-			{
-				for (int i = 0; i < filterList.size(); i++) {
-					if ((getDateObject(filterList.get(i).getEndDate()).equals(endDateFromDatePicker)|| getDateObject(filterList.get(i).getEndDate()).before(endDateFromDatePicker))) {
-						dateFilterList.add(filterList.get(i));
-
-					}
-					
-				}
-			}else
-			{
-				for (int i = 0; i < filterList.size(); i++) {
-					
-						dateFilterList.add(filterList.get(i));
-
-					
-					
-				}
-				
-			}
 	}
+
 	/**/
 	private String getMonthForInt(int num) {
-        String month = "wrong";
-        DateFormatSymbols dfs = new DateFormatSymbols();
-        String[] months = dfs.getMonths();
-        if (num >= 0 && num <= 11 ) {
-            month = months[num];
-        }
-        return month;
-    }
-	private Date getDateObject(String strdate) throws java.text.ParseException
-	{
+		String month = "wrong";
+		DateFormatSymbols dfs = new DateFormatSymbols();
+		String[] months = dfs.getMonths();
+		if (num >= 0 && num <= 11) {
+			month = months[num];
+		}
+		return month;
+	}
+
+	private Date getDateObject(String strdate) throws java.text.ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
 		String dateInString = strdate;
-	 
-		
-	 
-			Date date = formatter.parse(dateInString);
-			System.out.println(date);
-			System.out.println(formatter.format(date));
-			return date;
-		
+
+		Date date = formatter.parse(dateInString);
+		System.out.println(date);
+		System.out.println(formatter.format(date));
+		return date;
+
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
@@ -485,7 +389,7 @@ public class CategoriesListFragment extends Fragment {
 			filter();
 			return true;
 		case R.id.createEvent:
-			Intent createEvetn = new Intent(getActivity(),CreateEvent.class);
+			Intent createEvetn = new Intent(getActivity(), CreateEvent.class);
 			createEvetn.putExtra("eventList", eventList);
 			startActivity(createEvetn);
 			getActivity().finish();
@@ -495,8 +399,8 @@ public class CategoriesListFragment extends Fragment {
 		}
 		// return super.onOptionsItemSelected(item);
 	}
-	private void getFilteredCityList()
-	{
+
+	private void getFilteredCityList() {
 		newFilterList = new ArrayList<PkHacksEvent>();
 		for (int i = 0; i < filterList.size(); i++) {
 			if (filterList.get(i).getCity().equals(selectedCity)) {
@@ -506,81 +410,73 @@ public class CategoriesListFragment extends Fragment {
 		}
 	}
 
-	private void setStartDateList() 
-	{
-			getFilteredCityList();
-			if(selectedCity.equals(""))
-			{
-			
-					for (int i = 0; i < filterList.size(); i++) {
-					try {
-						if(getDateObject(filterList.get(i).getStartDate()).equals(startDateFromDatePicker))
-						newFilterList.add(filterList.get(i));
-					} catch (java.text.ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}	
-			}
-			else
-			{
-				for (int i = 0; i < newFilterList.size(); i++) {
-					
-						try {
-								if((getDateObject(newFilterList.get(i).getStartDate()).equals(startDateFromDatePicker)||(getDateObject(newFilterList.get(i).getStartDate()).after(startDateFromDatePicker))))
-									{
-										continue;
-									}
-								else{
-									newFilterList.remove(i);
-									}
-							} 
-						catch (java.text.ParseException e) 
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				
-			}
-	}
-/*	private void getFilteredEndDateList() 
-	{
+	private void setStartDateList() {
 		getFilteredCityList();
-		if(selectedCity.equals("") && startDateFromDatePicker.equals(null))
-		{
-		
-				for (int i = 0; i < filterList.size(); i++) {
+		if (selectedCity.equals("")) {
+
+			for (int i = 0; i < filterList.size(); i++) {
 				try {
-					if(getDateObject(filterList.get(i).getEndDate()).equals(endDateFromDatePicker))
-					newFilterList.add(filterList.get(i));
+					if (getDateObject(filterList.get(i).getStartDate()).equals(
+							startDateFromDatePicker))
+						newFilterList.add(filterList.get(i));
 				} catch (java.text.ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}	
-		}
-		else {
+			}
+		} else {
 			for (int i = 0; i < newFilterList.size(); i++) {
-				
+
 				try {
-						if((getDateObject(newFilterList.get(i).getEndDate()).equals(endDateFromDatePicker)||(getDateObject(newFilterList.get(i).getEndDate()).after(endDateFromDatePicker))))
-							{
-								continue;
-							}
-						else{
-							newFilterList.remove(i);
-							}
-					} 
-				catch (java.text.ParseException e) 
-				{
+					if ((getDateObject(newFilterList.get(i).getStartDate())
+							.equals(startDateFromDatePicker) || (getDateObject(newFilterList
+							.get(i).getStartDate())
+							.after(startDateFromDatePicker)))) {
+						continue;
+					} else {
+						newFilterList.remove(i);
+					}
+				} catch (java.text.ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			
+
 		}
 	}
-	*/
+
+	private void getFilteredEndDateList() {
+		getFilteredCityList();
+		if (selectedCity.equals("") && startDateFromDatePicker.equals(null)) {
+
+			for (int i = 0; i < filterList.size(); i++) {
+				try {
+					if (getDateObject(filterList.get(i).getEndDate()).equals(
+							endDateFromDatePicker))
+						newFilterList.add(filterList.get(i));
+				} catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} else {
+			for (int i = 0; i < newFilterList.size(); i++) {
+
+				try {
+					if ((getDateObject(newFilterList.get(i).getEndDate())
+							.equals(endDateFromDatePicker) || (getDateObject(newFilterList
+							.get(i).getEndDate()).after(endDateFromDatePicker)))) {
+						continue;
+					} else {
+						newFilterList.remove(i);
+					}
+				} catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+	}
 
 }

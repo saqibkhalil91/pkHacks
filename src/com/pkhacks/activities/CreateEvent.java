@@ -125,7 +125,7 @@ public class CreateEvent extends Activity implements OnClickListener, OnItemSele
 						.append(" ").append(year)
 						.append(" "));
 			}
-			// set selected date into datepicker also
+			// set selected date into datepicker alsoF
 			datePickerStartDate.init(year, month, day, null);
 
 		}
